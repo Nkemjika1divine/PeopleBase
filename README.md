@@ -1,4 +1,4 @@
 <h1>PeopleBase</h1>
-<h3>Know their profiles...</h3>
+<h3>Know them before you meet them...</h3>
 
 ![logo](https://i.imgur.com/KwGEymn.png)
