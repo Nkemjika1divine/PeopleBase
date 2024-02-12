@@ -17,8 +17,6 @@ class BaseModel:
     
     def __str__(self):
         print("[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__))
-
-    """def all(self):"""
     
     def to_dict(self):
         copy = self.__dict__.copy()
