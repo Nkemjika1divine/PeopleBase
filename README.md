@@ -11,3 +11,4 @@
 
 <h4>FileStorage Class</h4>
 <b>.all():</b> This returns everything in the FileStorage.__objects attribute ||
+<b>.new():</b> This updates the content of the FileStorage.__objects attribute by calling the .all() method on the object ||
