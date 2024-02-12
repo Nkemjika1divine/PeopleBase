@@ -15,7 +15,7 @@ class FileStorage:
     
     def new(self, obj):
         class_name = obj.__class__.__name__
-        object_id = obj['id']
+        object_id = obj.id
         obj_key = "{}.{}".format(class_name, object_id)
         self.all().update({obj_key: obj})
 
