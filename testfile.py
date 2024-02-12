@@ -9,3 +9,4 @@ if __name__ == "__main__":
     user.save()
     print(user.time_updated)
     print(user.to_dict())
+    
