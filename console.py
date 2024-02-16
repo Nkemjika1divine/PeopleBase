@@ -19,5 +19,14 @@ class PeopleBase(cmd.Cmd):
     def help_quit(self):
         print("'quit' exits the program")
 
+    def do_create(self, arg):
+        """Creates an instance of a class"""
+        first_name = str(input("First Name: "))
+        middle_name = str(input("Middle Name: "))
+        surname = str(input("Surname: "))
+        print("My full name is {} {} {}".format(first_name, middle_name, surname))
+
+        
+
 if __name__ == '__main__':
     PeopleBase().cmdloop()
