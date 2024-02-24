@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from uuid import uuid4
 from datetime import datetime
-from
+from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 

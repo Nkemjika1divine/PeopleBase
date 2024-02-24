@@ -1,9 +1,16 @@
 #!/usr/bin/python3
+import os
 from sqlalchemy import create_engine, Column, String, Date, Integer
 from models.basemodel import BaseModel
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Person(BaseModel):
-    pass
+    if os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "file":
+        print("in file")
+    elif os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "db":
+        pass
     """id = Column(Integer, primary_key=True)
     date_registered = Column(Date)
     date_updated = Column(Date)
