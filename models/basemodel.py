@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 from uuid import uuid4
 from datetime import datetime
+from
+
+Base = declarative_base()
 
 class BaseModel:
     def __init__(self, *args, **kwargs):

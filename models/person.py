@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#from sqlalchemy import create_engine, Column, String, Date, Integer
+from sqlalchemy import create_engine, Column, String, Date, Integer
 from models.basemodel import BaseModel
 
 class Person(BaseModel):
