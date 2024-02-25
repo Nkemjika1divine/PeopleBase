@@ -8,11 +8,25 @@ load_dotenv()
 
 class Person(BaseModel, Base):
     if os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "file":
-        print("in file")
+        id = ""
+        first_name = ""
+        middle_name = ""
+        last_name = ""
+        date_of_birth = ""
+        gender = ""
+        address = ""
+        city = ""
+        state = ""
+        country = ""
+        phone_number = ""
+        email = ""
+        nationality = ""
+        occupation = ""
+        education_level = ""
+        marital_status = ""
     elif os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "db":
+        __tablename__ = "persons"
         id = Column(Integer, primary_key=True)
-        date_registered = Column(Date)
-        date_updated = Column(Date)
         first_name = Column(String(20))
         middle_name = Column(String(20))
         last_name = Column(String(20))
@@ -28,3 +42,7 @@ class Person(BaseModel, Base):
         occupation = Column(String(20))
         education_level = Column(String(20))
         marital_status = Column(String(20))
+
+    def __init__(self, *args, **kwargs):
+        """initialize person"""
+        super().__init__(*args, **kwargs)
