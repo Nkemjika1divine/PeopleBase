@@ -1,30 +1,30 @@
 #!/usr/bin/python3
 import os
 from sqlalchemy import create_engine, Column, String, Date, Integer
-from models.basemodel import BaseModel
+from models.basemodel import BaseModel, Base
 from dotenv import load_dotenv
 
 load_dotenv()
 
-class Person(BaseModel):
+class Person(BaseModel, Base):
     if os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "file":
         print("in file")
     elif os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "db":
-        pass
-    """id = Column(Integer, primary_key=True)
-    date_registered = Column(Date)
-    date_updated = Column(Date)
-    first_name = Column(String)
-    last_name = Column(String)
-    date_of_birth = Column(Date)
-    gender = Column(String)
-    address = Column(String)
-    city = Column(String)
-    state = Column(String)
-    country = Column(String)
-    phone_number = Column(String)
-    email = Column(String)
-    nationality = Column(String)
-    occupation = Column(String)
-    education_level = Column(String)
-    marital_status = Column(String)"""
+        id = Column(Integer, primary_key=True)
+        date_registered = Column(Date)
+        date_updated = Column(Date)
+        first_name = Column(String(20))
+        middle_name = Column(String(20))
+        last_name = Column(String(20))
+        date_of_birth = Column(Date)
+        gender = Column(String(10))
+        address = Column(String(150))
+        city = Column(String(20))
+        state = Column(String(20))
+        country = Column(String(20))
+        phone_number = Column(String(20))
+        email = Column(String(60))
+        nationality = Column(String(20))
+        occupation = Column(String(20))
+        education_level = Column(String(20))
+        marital_status = Column(String(20))
