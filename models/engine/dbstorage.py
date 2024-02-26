@@ -13,12 +13,12 @@ class DBStorage:
 
     def __init__(self):
         PEOPLEBASE_ENV = os.environ.get('PEOPLEBASE_ENV')
-        PEOPLEBASE_DATABASE_NAME = os.environ.get('PEOPLEBASE_DATABASE_NAME')
+        PEOPLEBASE_DATABASE_NAME_TEST = os.environ.get('PEOPLEBASE_DATABASE_NAME_TEST')
         PEOPLEBASE_DATABASE_USER = os.environ.get('PEOPLEBASE_DATABASE_USER')
         PEOPLEBASE_DATABASE_PWD = os.environ.get('PEOPLEBASE_DATABASE_PWD')
         PEOPLEBASE_DATABASE_HOST = os.environ.get('PEOPLEBASE_DATABASE_HOST')
         PEOPLEBASE_DATABASE_PORT = os.environ.get('PEOPLEBASE_DATABASE_PORT')
-        self.__engine = create_engine("mysql+mysqlconnector://{}:{}@{}:{}/{}".format(PEOPLEBASE_DATABASE_USER, PEOPLEBASE_DATABASE_PWD, PEOPLEBASE_DATABASE_HOST, PEOPLEBASE_DATABASE_PORT, PEOPLEBASE_DATABASE_NAME), pool_pre_ping=True)
+        self.__engine = create_engine("mysql+mysqlconnector://{}:{}@{}:{}/{}".format(PEOPLEBASE_DATABASE_USER, PEOPLEBASE_DATABASE_PWD, PEOPLEBASE_DATABASE_HOST, PEOPLEBASE_DATABASE_PORT, PEOPLEBASE_DATABASE_NAME_TEST), pool_pre_ping=True)
         if PEOPLEBASE_ENV == "test":
             try:
                 Base.metadata.drop_all(self.__engine)

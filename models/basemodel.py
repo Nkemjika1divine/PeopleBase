@@ -5,10 +5,10 @@ import os
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 
-if os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "file":
+"""if os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "file":
     Base = object
-elif os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "db":
-    Base = declarative_base()
+elif os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "db":"""
+Base = declarative_base()
 
 class BaseModel:
     if os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "db":
