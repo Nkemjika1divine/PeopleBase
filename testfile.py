@@ -1,6 +1,7 @@
 import os
 from models import person, storage
 from dotenv import load_dotenv
+from models.person import search
 
 # Test person creation
 try:
@@ -44,3 +45,4 @@ if input("Do you want to delete the created person? (y/n): ").lower() == "y":
 # Test other functionalities as needed, following similar patterns
 
 print("Basic testing completed.")
+        

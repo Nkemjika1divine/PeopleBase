@@ -26,7 +26,9 @@ class Person(BaseModel, Base):
         marital_status = ""
     elif os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "db":
         __tablename__ = "persons"
-        id = Column(Integer, primary_key=True, nullable=False)
+        id = Column(String(50), primary_key=True, nullable=False)
+        time_created = Column(String(50), nullable=False)
+        time_updated = Column(String(50), nullable=False)
         first_name = Column(String(20), nullable=False)
         middle_name = Column(String(20))
         last_name = Column(String(20), nullable=False)
@@ -38,8 +40,8 @@ class Person(BaseModel, Base):
         city = Column(String(20), nullable=False)
         state = Column(String(20), nullable=False)
         country = Column(String(20), nullable=False)
-        phone_number = Column(String(20), nullable=False)
-        email = Column(String(60), nullable=False)
+        phone_number = Column(String(20), unique=True, nullable=False)
+        email = Column(String(60), unique=True, nullable=False)
         nationality = Column(String(20), nullable=False)
         occupation = Column(String(20), nullable=False)
         education_level = Column(String(20), nullable=False)
@@ -49,9 +51,11 @@ class Person(BaseModel, Base):
         """initialize person"""
         super().__init__(*args, **kwargs)
 
+def check_image(image_from_db, user_entry):
+    return True
+
 def search(line=None):
     from models.engine.dbstorage import DBStorage
-    from models.__init__ import storage
 
     if line:
         similar_objects = {}
