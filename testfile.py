@@ -1,26 +1,36 @@
 import os
-from models import person, storage
-from dotenv import load_dotenv
-from models.person import search
+from models.dataset import Dataset
+from models import storage
 
 # Test person creation
 try:
-    person1 = person.Person(first_name="Divine", middle_name="Nkemjika", last_name="Anizoba", date_of_birth="1980-01-01", phone_number="0703243726")
+    person1 = Dataset(first_name="Divine", middle_name="Nkemjika", last_name="Anizoba", photo="image.jpg", photo_type="jpg", date_of_birth="1980-01-01", gender="M", address="16 jump street", city="Aba", state="Abuja", country="Nigeria", phone_number="08172617430", email="Nkem@yahoo.com", nationality="Nigerian", occupation="Trader", education_level="University", marital_status="Single")
     storage.new(person1)
     storage.save()
     print("Person created successfully:", person1)
 except Exception as e:
     print("Error creating person:", e)
 
-# Test person retrieval
+
 try:
-    retrieved_person = storage.get("Person", person1.id)
-    if retrieved_person:
-        print("Person retrieved successfully:", retrieved_person)
-    else:
-        print("Person not found.")
+    person2 = Dataset(first_name="Divine", middle_name="Nkemjika", last_name="Anizoba", photo="image.jpg", photo_type="jpg", date_of_birth="1980-01-01", gender="M", address="16 jump street", city="Aba", state="Abuja", country="Nigeria", phone_number="08172617430", email="Nkem@yahoo.com", nationality="Nigerian", occupation="Trader", education_level="University", marital_status="Single")
+    storage.new(person1)
+    storage.save()
+    print("Person created successfully:", person1)
 except Exception as e:
-    print("Error retrieving person:", e)
+    print("Error creating person:", e)
+
+
+"""# Test person retrieval
+#try:
+retrieved_person = search("07034243726")
+if retrieved_person:
+    for person in retrieved_person:
+        print(person)
+else:
+    print("Person not found.")
+#except Exception as e:
+ #   print("Error retrieving person:", e)
 
 # Test person update
 try:
@@ -44,5 +54,5 @@ if input("Do you want to delete the created person? (y/n): ").lower() == "y":
 
 # Test other functionalities as needed, following similar patterns
 
-print("Basic testing completed.")
+print("Basic testing completed.")"""
         

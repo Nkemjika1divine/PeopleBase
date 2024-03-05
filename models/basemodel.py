@@ -1,25 +1,25 @@
 #!/usr/bin/python3
+from dotenv import load_dotenv
 from uuid import uuid4
-from datetime import datetime
 import os
-from sqlalchemy import Column, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
+from datetime import datetime
+from sqlalchemy import Column, Integer, DateTime
+from sqlalchemy.orm import declarative_base
 
-"""if os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "file":
-    Base = object
-elif os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "db":"""
+load_dotenv()
+
 Base = declarative_base()
 
 class BaseModel:
     if os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "db":
-        id = Column(String(60), primary_key=True)
-        time_created = Column(DateTime, default=datetime.utcnow)
-        time_updated = Column(DateTime, default=datetime.utcnow)
+        __abstract__ = True
+        id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
+        time_created = Column(DateTime, default=datetime.utcnow, nullable=False)
+        time_updated = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     def __init__(self, *args, **kwargs):
-        from models import storage
+        # from models import storage
         if kwargs:
-            import models.__init__
             for key, value in kwargs.items():
                 if key == '__class__':
                     continue
@@ -32,9 +32,6 @@ class BaseModel:
             self.time_created = datetime.now()
             self.time_updated = datetime.now()
     
-    def __str__(self):
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
-    
     def to_dict(self):
         copy = self.__dict__.copy()
         copy['__class__'] = self.__class__.__name__
@@ -46,6 +43,9 @@ class BaseModel:
             del copy["_sa_instance_state"]
         return copy
 
+    def __str__(self):
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+
     def save(self):
         from models import storage
         self.time_updated = datetime.now()
@@ -53,5 +53,6 @@ class BaseModel:
         storage.save()
     
     def delete(self):
-        from models.__init__ import storage
+        from models import storage
+        """delete the current instance from the storage"""
         storage.delete(self)

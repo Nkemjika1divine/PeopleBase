@@ -2,16 +2,23 @@
 import json
 import os
 from models.basemodel import BaseModel
-from models.person import Person
+from models.dataset import Dataset
 
-classes = {'BaseModel': BaseModel, 'Person': Person}
+classes = {'BaseModel': BaseModel, 'Dataset': Dataset}
 
 class FileStorage:
     __file_path = "filestorage.json"
     __objects = {}
 
-    def all(self):
-        return FileStorage.__objects
+    def all(self, cls=None):
+        if cls:
+            objects = {}
+            for key, value in FileStorage.__objects.items():
+                if value.__class__ == cls:
+                    objects[key] = value
+            return objects
+        else:
+            return FileStorage.__objects
     
     def new(self, obj):
         class_name = obj.__class__.__name__
@@ -35,10 +42,10 @@ class FileStorage:
                     for key, value in objects.items():
                         class_name = classes[objects[key]["__class__"]] #retreive the class name
                         class_object = class_name(**value) #assign the value of the object to the class name
-                        FileStorage.__objects[key] = class_object #update the key
+                        self.__objects[key] = class_object #update the key
                 except Exception as e:
                     pass
-
+    
     def delete(self, obj=None):
         if obj:
             all_objects = FileStorage.__objects
