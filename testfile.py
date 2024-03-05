@@ -12,13 +12,13 @@ except Exception as e:
     print("Error creating person:", e)
 
 
-try:
+"""try:
     person2 = Dataset(first_name="Divine", middle_name="Nkemjika", last_name="Anizoba", photo="image.jpg", photo_type="jpg", date_of_birth="1980-01-01", gender="M", address="16 jump street", city="Aba", state="Abuja", country="Nigeria", phone_number="08172617430", email="Nkem@yahoo.com", nationality="Nigerian", occupation="Trader", education_level="University", marital_status="Single")
     storage.new(person1)
     storage.save()
     print("Person created successfully:", person1)
 except Exception as e:
-    print("Error creating person:", e)
+    print("Error creating person:", e)"""
 
 
 """# Test person retrieval

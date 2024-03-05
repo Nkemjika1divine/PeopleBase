@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, Column, String, Date, Integer
 from models.basemodel import BaseModel, Base
+from uuid import uuid4
 
 load_dotenv()
 
@@ -48,3 +49,5 @@ class Dataset(BaseModel, Base):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        if 'id' not in kwargs:
+            self.id = str(uuid4())

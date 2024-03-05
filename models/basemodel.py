@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from uuid import uuid4
 import os
 from datetime import datetime
-from sqlalchemy import Column, Integer, DateTime
+from sqlalchemy import Column, String, DateTime
 from sqlalchemy.orm import declarative_base
 
 load_dotenv()
@@ -13,12 +13,14 @@ Base = declarative_base()
 class BaseModel:
     if os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "db":
         __abstract__ = True
-        id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
+        id = Column(String(50), primary_key=True, nullable=False)
         time_created = Column(DateTime, default=datetime.utcnow, nullable=False)
         time_updated = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     def __init__(self, *args, **kwargs):
         # from models import storage
+        if 'id' not in kwargs:
+            self.id = uuid4().bytes
         if kwargs:
             for key, value in kwargs.items():
                 if key == '__class__':
@@ -28,7 +30,7 @@ class BaseModel:
                 else:
                     setattr(self, key, value)
         else:
-            self.id = str(uuid4())
+            #self.id = str(uuid4())
             self.time_created = datetime.now()
             self.time_updated = datetime.now()
     
