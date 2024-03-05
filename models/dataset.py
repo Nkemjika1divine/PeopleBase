@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 import os
 from dotenv import load_dotenv
-from sqlalchemy import create_engine, Column, String, Date, Integer
+from sqlalchemy import create_engine, Column, String, Date
 from models.basemodel import BaseModel, Base
-from uuid import uuid4
 
 load_dotenv()
 
@@ -35,7 +34,7 @@ class Dataset(BaseModel, Base):
         photo_type = Column(String(30), nullable=False)
         date_of_birth = Column(Date, nullable=False)
         gender = Column(String(10), nullable=False)
-        address = Column(String(150), nullable=False)
+        address = Column(String(500), nullable=False)
         city = Column(String(20), nullable=False)
         state = Column(String(20), nullable=False)
         country = Column(String(20), nullable=False)
