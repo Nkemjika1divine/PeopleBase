@@ -49,5 +49,3 @@ class Dataset(BaseModel, Base):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if 'id' not in kwargs:
-            self.id = str(uuid4())

@@ -20,7 +20,7 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         # from models import storage
         if 'id' not in kwargs:
-            self.id = uuid4().bytes
+            self.id = str(uuid4())
         if kwargs:
             for key, value in kwargs.items():
                 if key == '__class__':
