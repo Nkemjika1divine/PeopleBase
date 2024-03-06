@@ -3,8 +3,13 @@ import json
 import os
 from models.basemodel import BaseModel
 from models.dataset import Dataset
+from models.activity import Activity
+from models.user import User
 
-classes = {'BaseModel': BaseModel, 'Dataset': Dataset}
+classes = {'Dataset': Dataset,
+           "User": User,
+           "Activity": Activity
+           }
 
 class FileStorage:
     __file_path = "filestorage.json"

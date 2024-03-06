@@ -3,12 +3,17 @@ import os
 from dotenv import load_dotenv
 from models.basemodel import Base
 from models.dataset import Dataset
+from models.activity import Activity
+from models.user import User
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 
 load_dotenv()
 
-classes = {"Dataset": Dataset}
+classes = {"Dataset": Dataset,
+           "User": User,
+           "Activity": Activity
+           }
 
 class DBStorage:
     __session = None
