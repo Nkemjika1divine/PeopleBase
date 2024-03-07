@@ -1,5 +1,15 @@
 #!/usr/bin/python3
 import cmd
+from models.engine.dbstorage import DBStorage
+from models import storage
+from models.dataset import Dataset
+from models.user import User
+from models.activity import Activity
+
+classes = {"Dataset": Dataset,
+           "User": User,
+           "Activity": Activity
+           }
 
 class PeopleBase(cmd.Cmd):
     prompt = "PeopleBase: "
@@ -19,12 +29,16 @@ class PeopleBase(cmd.Cmd):
     def help_quit(self):
         print("'quit' exits the program")
 
-    def do_create(self, arg):
-        """Creates an instance of a class"""
-        first_name = str(input("First Name: "))
-        middle_name = str(input("Middle Name: "))
-        surname = str(input("Surname: "))
-        print("My full name is {} {} {}".format(first_name, middle_name, surname))
+    def do_find(self, arg):
+        """finds a data from the database"""
+        print("Searchin...")
+
+        all_data = storage.all()
+        if all_data:
+            for data in all_data:
+                print(data)
+        else:
+            print("Nothing found")
 
         
 

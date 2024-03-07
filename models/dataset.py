@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os
 from dotenv import load_dotenv
-from sqlalchemy import create_engine, Column, String, Date
+from sqlalchemy import Column, String, Date
 from models.basemodel import BaseModel, Base
 
 load_dotenv()

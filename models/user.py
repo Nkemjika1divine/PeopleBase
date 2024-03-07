@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 from models.basemodel import BaseModel, Base
 from random import randint
 from smtplib import SMTP
-from sqlalchemy import create_engine, Column, String
+from sqlalchemy import Column, String
 
 
 load_dotenv()

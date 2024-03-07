@@ -14,12 +14,12 @@ except Exception as e:
 
 
 try:
-    person1 = User(email="cndivine@gmail.com", address="No 8", phone_number="77899", password="money", role="Admin")
+    person1 = User(full_name="Divine", email="cndivine@gmail.com", address="No 8", phone_number="77899", password="money", role="Admin")
     storage.new(person1)
     storage.save()
     print("User created successfully:", person1)
 except Exception as e:
-    print("Error creating Dataset:", e)
+    print("Error creating User:", e)
 
 
 """try:
@@ -31,21 +31,20 @@ except Exception as e:
     print("Error creating person:", e)"""
 
 
-"""# Test person retrieval
-#try:
-retrieved_person = search("07034243726")
-if retrieved_person:
-    for person in retrieved_person:
-        print(person)
-else:
-    print("Person not found.")
-#except Exception as e:
- #   print("Error retrieving person:", e)
-
-# Test person update
+# Test person retrieval
 try:
-    retrieved_person.first_name = "Jane"
+    retrieved_person = storage.all(User)
+    if retrieved_person:
+        for person in retrieved_person:
+            print(person)
+except Exception as e:
+    print("Error retrieving person:", e)
+
+"""# Test person update
+try:
+    retrieved_person["User.e4428230-58f6-42fa-82e1-8afcd70f3fe0"]["full_name"] = "Jane"
     retrieved_person.save()
+    print("updated person saved")
     updated_person = storage.get("Person", person1.id)
     if updated_person and updated_person.first_name == "Jane":
         print("Person updated successfully!")
@@ -64,5 +63,4 @@ if input("Do you want to delete the created person? (y/n): ").lower() == "y":
 
 # Test other functionalities as needed, following similar patterns
 
-print("Basic testing completed.")"""
-        
+print("Basic testing completed")"""

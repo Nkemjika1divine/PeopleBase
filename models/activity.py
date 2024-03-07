@@ -2,7 +2,7 @@
 import os
 from datetime import datetime
 from dotenv import load_dotenv
-from sqlalchemy import create_engine, Column, String, Date, ForeignKey
+from sqlalchemy import Column, String, Date, ForeignKey
 from models.basemodel import BaseModel, Base
 from models.user import User
 
