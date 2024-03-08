@@ -5,19 +5,19 @@ from models import storage
 
 # Test person creation
 try:
-    person1 = Dataset(first_name="Divine", middle_name="Nkemjika", last_name="Anizoba", photo="image.jpg", photo_type="jpg", date_of_birth="1980-01-01", gender="M", address="16 jump street", city="Aba", state="Abuja", country="Nigeria", phone_number="08172617430", email="Nkem@yahoo.com", nationality="Nigerian", occupation="Trader", education_level="University", marital_status="Single")
-    storage.new(person1)
+    data1 = Dataset(first_name="Divine", middle_name="Nkemjika", last_name="Anizoba", photo="image.jpg", photo_type="jpg", date_of_birth="1980-01-01", gender="M", address="16 jump street", city="Aba", state="Abuja", country="Nigeria", phone_number="08172617430", email="Nkem@yahoo.com", nationality="Nigerian", occupation="Trader", education_level="University", marital_status="Single")
+    storage.new(data1)
     storage.save()
-    print("Dataset created successfully:", person1)
+    print("Dataset created successfully:", data1)
 except Exception as e:
     print("Error creating dataset:", e)
 
 
 try:
-    person1 = User(full_name="Divine", email="cndivine@gmail.com", address="No 8", phone_number="77899", password="money", role="Admin")
-    storage.new(person1)
+    user1 = User(full_name="Divine", email="cndivine@gmail.com", address="No 8", phone_number="77899", password="money", role="Admin")
+    storage.new(user1)
     storage.save()
-    print("User created successfully:", person1)
+    print("User created successfully:", user1)
 except Exception as e:
     print("Error creating User:", e)
 
