@@ -14,6 +14,9 @@ classes = {"Dataset": Dataset,
 class PeopleBase(cmd.Cmd):
     prompt = "PeopleBase: "
 
+    def emptyline(self):
+        return False
+
     def do_quit(self, arg):
         return True
     
@@ -32,13 +35,22 @@ class PeopleBase(cmd.Cmd):
     def do_find(self, arg=None):
         """finds a data from the database"""
         print("Searchin...")
-        if not arg:
+        if arg:
+            print("trying to load storage")
             all_data = storage.all()
             if all_data:
                 for data in all_data:
                     print(data)
             else:
                 print("Nothing found")
+    
+    def do_create(self, arg=None):
+        if arg and arg.lower() == "data":
+            first_name = input("Enter first name: ")
+            middle_name = input("Enter middle name: ")
+            last_name = input("Enter last name: ")
+
+            print("Name is {} {} {}".format(first_name, middle_name, last_name))
 
         
 
