@@ -33,7 +33,7 @@ except Exception as e:
 
 # Test person retrieval
 try:
-    retrieved_person = storage.all(User)
+    retrieved_person = storage.all()
     if retrieved_person:
         for person in retrieved_person:
             print(person)

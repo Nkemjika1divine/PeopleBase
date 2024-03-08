@@ -29,16 +29,16 @@ class PeopleBase(cmd.Cmd):
     def help_quit(self):
         print("'quit' exits the program")
 
-    def do_find(self, arg):
+    def do_find(self, arg=None):
         """finds a data from the database"""
         print("Searchin...")
-
-        all_data = storage.all()
-        if all_data:
-            for data in all_data:
-                print(data)
-        else:
-            print("Nothing found")
+        if not arg:
+            all_data = storage.all()
+            if all_data:
+                for data in all_data:
+                    print(data)
+            else:
+                print("Nothing found")
 
         
 
