@@ -1,5 +1,5 @@
-create database if not exists peoplebase;
-create user if not exists 'admin'@'localhost' identified by 'admin_peoplebase';
-grant all privileges on `peoplebase`.* to 'admin'@'localhost';
-grant select on `performance_schema`.* to 'admin'@'localhost';
-flush privileges;
+CREATE DATABASE IF NOT EXISTS peoplebase;
+CREATE USER IF NOT EXISTS 'admin'@'localhost' IDENTIFIED BY 'admin_peoplebase';
+GRANT ALL PRIVILEGES ON `peoplebase`.* TO 'admin'@'localhost';
+GRANT SELECT ON `performance_schema`.* TO 'admin'@'localhost';
+FLUSH PRIVILEGES;
