@@ -6,8 +6,9 @@ from models import storage
 # Test person creation
 try:
     data1 = Dataset(first_name="Divine", middle_name="Nkemjika", last_name="Anizoba", photo="image.jpg", photo_type="jpg", date_of_birth="1980-01-01", gender="M", address="16 jump street", city="Aba", state="Abuja", country="Nigeria", phone_number="08172617430", email="Nkem@yahoo.com", nationality="Nigerian", occupation="Trader", education_level="University", marital_status="Single")
-    storage.new(data1)
-    storage.save()
+    new_storage = storage.__class__()
+    new_storage.new(data1)
+    new_storage.save()
     print("Dataset created successfully:", data1)
 except Exception as e:
     print("Error creating dataset:", e)
