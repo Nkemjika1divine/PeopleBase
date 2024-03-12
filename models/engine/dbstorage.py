@@ -42,13 +42,13 @@ class DBStorage:
         """query on the current database session"""
         result = {}
         if cls is not None:
-            for obj in self.__session.query(cls).all():
+            for obj in self.__session.query(classes[cls]).all():
                 ClassName = obj.__class__.__name__
                 keyName = ClassName + "." + obj.id
                 result[keyName] = obj
         else:
-            for clss in classes:
-                for obj in self.__session.query(clss).all():
+            for cls in classes.values():
+                for obj in self.__session.query(cls).all():
                     ClassName = obj.__class__.__name__
                     keyName = ClassName + "." + obj.id
                     result[keyName] = obj

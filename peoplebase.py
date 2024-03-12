@@ -34,19 +34,28 @@ class PeopleBase(cmd.Cmd):
 
     def do_find(self, arg=None):
         """finds a data from the database"""
-        print("Searching...")
         if arg:
-            print("Trying to load storage")
-            all_data = storage.all()
+            print("Looking for {}".format(arg))
+            all_data = storage.all(arg)
             if all_data:
+                print("{} found".format(arg))
                 for data in all_data:
                     print(data)
             else:
-                print("Nothing found")
+                print("{} not found".format(arg))
+        else:
+            print("Looking for all data in the Database")
+            all_data = storage.all()
+            if all_data:
+                print("Data found")
+                for data in all_data:
+                    print(data)
+            else:
+                print("There is no data in the Database")
     
     def do_create(self, arg=None):
-        print("*****Please endeavor to follow the instructions.*****\n**If you encounter an error, you will have to start afresh.**")
         if arg and arg.lower() == "new data":
+            print("*****Please endeavor to follow the instructions.*****\n**If you encounter an error, you will have to start afresh.**")
             first_name = input("Enter first name: ")
             middle_name = input("Enter middle name: ")
             last_name = input("Enter last name: ")
