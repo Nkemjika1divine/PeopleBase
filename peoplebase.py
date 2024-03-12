@@ -39,8 +39,8 @@ class PeopleBase(cmd.Cmd):
             all_data = storage.all(arg)
             if all_data:
                 print("{} found".format(arg))
-                for data in all_data:
-                    print(data)
+                for key, value in all_data.items():
+                    print("{}: {}".format(key, value))
             else:
                 print("{} not found".format(arg))
         else:
@@ -48,8 +48,8 @@ class PeopleBase(cmd.Cmd):
             all_data = storage.all()
             if all_data:
                 print("Data found")
-                for data in all_data:
-                    print(data)
+                for key, value in all_data.items():
+                    print("{}: {}".format(key, value))
             else:
                 print("There is no data in the Database")
     
