@@ -80,7 +80,7 @@ class PeopleBase(cmd.Cmd):
     
     def do_create(self, arg=None):
         if arg and arg.lower() == "new data":
-            print("*******Please endeavor to follow the instructions.*******\n**If you encounter an error, you will have to start afresh.**")
+            print("\n*******Please endeavor to follow the instructions.*******\n**If you encounter an error, you will have to start afresh.\n**")
             first_name = input("Enter first name: ")
             middle_name = input("Enter middle name: ")
             last_name = input("Enter last name: ")
