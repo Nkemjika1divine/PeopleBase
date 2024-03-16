@@ -4,11 +4,13 @@ import os
 from models.basemodel import BaseModel
 from models.dataset import Dataset
 from models.activity import Activity
+from models.crime import Crime
 from models.user import User
 
 classes = {'Dataset': Dataset,
            "User": User,
-           "Activity": Activity
+           "Activity": Activity,
+           "Crime": Crime
            }
 
 class FileStorage:

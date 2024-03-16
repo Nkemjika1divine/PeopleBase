@@ -11,7 +11,6 @@ class Dataset(BaseModel, Base):
         first_name = ""
         middle_name = ""
         last_name = ""
-        photo = ""
         date_of_birth = ""
         gender = ""
         address = ""
@@ -29,7 +28,6 @@ class Dataset(BaseModel, Base):
         first_name = Column(String(20), nullable=False)
         middle_name = Column(String(20), nullable=True)
         last_name = Column(String(20), nullable=False)
-        photo = Column(String(300), nullable=False)
         date_of_birth = Column(Date, nullable=False)
         gender = Column(String(10), nullable=False)
         address = Column(String(500), nullable=False)
