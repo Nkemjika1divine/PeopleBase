@@ -2,6 +2,7 @@
 import os
 from datetime import date
 from dotenv import load_dotenv
+from models import storage
 from models.basemodel import Base
 from models.dataset import Dataset
 from models.activity import Activity
@@ -10,13 +11,16 @@ from models.user import User
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 
+
 load_dotenv()
+
 
 classes = {"Dataset": Dataset,
            "User": User,
            "Activity": Activity,
            "Crime": Crime
            }
+
 
 class DBStorage:
     __session = None
@@ -40,7 +44,8 @@ class DBStorage:
                 Base.metadata.drop_all(self.__engine)
             except Exception:
                 print("No Table found in the database")
-    
+
+
     def all(self, cls=None):
         """query on the current database session"""
         result = {}
@@ -56,20 +61,24 @@ class DBStorage:
                     keyName = ClassName + "." + obj.id
                     result[keyName] = obj
         return result
-    
+
+
     def new(self, obj):
         """add an object to the database"""
         self.__session.add(obj)
-    
+
+
     def save(self):
         """commit all changes of the database"""
         self.__session.commit()
+
 
     def delete(self, obj=None):
         """delete from the database"""
         if obj:
             self.__session.delete(obj)
-    
+
+
     def reload(self):
         """reloads from the database"""
         Base.metadata.create_all(self.__engine)
@@ -77,12 +86,30 @@ class DBStorage:
         Session = scoped_session(sess_factory)
         self.__session = Session
 
+
     def close(self):
         """call remove() method on the private session attribute"""
         self.__session.remove()
-    
+
+
     def get_session(self):
         return self.__session
+    
+
+    def count(self, cls=None):
+        """
+        count the number of objects in storage
+        """
+        all_class = classes.values()
+
+        if not cls:
+            count = 0
+            for a_class in all_class:
+                count += len(storage.all(a_class).values())
+        else:
+            count = len(storage.all(cls).values())
+
+        return count
 
 
 def get_column_value(session=None, table_name=None, row_id=None, column_name=None):
@@ -92,6 +119,7 @@ def get_column_value(session=None, table_name=None, row_id=None, column_name=Non
             return getattr(row, column_name)
         else:
             return None
+
 
 def print_requested_data(session=None, table_name=None, row_id=None, arg=None):
     if session and table_name and row_id and arg:

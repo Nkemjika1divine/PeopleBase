@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 from flask import Flask, jsonify, request
-from models import storage
 from api.v1.views import app_views
 
 
@@ -11,6 +10,7 @@ app.register_blueprint(app_views)
 
 @app.teardown_appcontext
 def close_db(error):
+    from models import storage
     storage.close()
 
 
