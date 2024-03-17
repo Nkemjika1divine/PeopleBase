@@ -2,7 +2,6 @@
 import os
 from datetime import date
 from dotenv import load_dotenv
-from models import storage
 from models.basemodel import Base
 from models.dataset import Dataset
 from models.activity import Activity
@@ -97,6 +96,7 @@ class DBStorage:
     
 
     def count(self, cls=None):
+        from models import storage
         """
         count the number of objects in storage
         """

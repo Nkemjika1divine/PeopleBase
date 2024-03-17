@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from flask import Flask, jsonify, request
+from flask import Flask, make_response, jsonify, request
 from api.v1.views import app_views
 
 
@@ -14,5 +14,10 @@ def close_db(error):
     storage.close()
 
 
+@app.errorhandler(404)
+def return_404(error):
+    return make_response(jsonify({"error 404": "Not found"}), 404)
+
+
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port='5000', threaded=True)
+    app.run(host='127.0.0.1', port='5000', threaded=True)
