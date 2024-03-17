@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import cmd
-from models.engine.dbstorage import DBStorage, get_column_value
+from models.engine.dbstorage import DBStorage, get_column_value, print_requested_data, print_requested_crime
 from models import storage
 from models.dataset import Dataset
 from models.user import User
@@ -50,25 +50,16 @@ class PeopleBase(cmd.Cmd):
                 print("{} not found".format(arg))
         elif arg and arg not in classes:
             all_data = storage.all()
+            flag = False
             for data in all_data.keys():
                 obj_id = data.split(".")[1]
-                if get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="email") == arg:
-                    print("Data found")
-                    print("Here is the data you requested")
-                    print("Name = {} {} {}".format(get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="first_name"),
-                                                    get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="middle_name"),
-                                                    get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="last_name")))
+                if get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="email") == arg or get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="phone_number") == arg:
+                    print_requested_data(session=storage.get_session(), table_name=Dataset, row_id=obj_id, arg=arg)
+
+                    flag = True
                     break
-                elif get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="phone_number") == arg:
-                    print("Data found")
-                    print("Here is the data you requested")
-                    print("Name = {} {} {}".format(get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="first_name"),
-                                                    get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="middle_name"),
-                                                    get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="last_name")))
-                    break
-                else:
-                    print("No data associated with {} in the database".format(arg))
-            
+            if flag == False:    
+                print("Sorry, no such information in the database")
         else:
             print("Looking for all data in the Database")
             all_data = storage.all()
@@ -100,7 +91,7 @@ class PeopleBase(cmd.Cmd):
                 state = input("Enter State: ")
                 country = input("Enter Country of residence: ")
                 nationality = input("Enter Country of Origin: ")
-                phone_number = input("Enter Phone Number: ")
+                phone_number = input("Enter Phone Number (must contain your country code): ")
                 email = input("Enter Email Address: ")
                 occupation = input("Enter Occupation: ")
                 education_level = input("Enter Highest Educational Qualification (Ph.D/Masters/B.Sc./B.A/SSCE): ")
@@ -136,10 +127,7 @@ class PeopleBase(cmd.Cmd):
                     all_data = storage.all()
                     for data in all_data.keys():
                         obj_id = data.split(".")[1]
-                        if get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="email") == args[2]:
-                            crime_id = obj_id
-                            break
-                        elif get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="phone_number") == args[2]:
+                        if get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="email") == args[2] or get_column_value(session=storage.get_session(), table_name=Dataset, row_id=obj_id, column_name="phone_number") == args[2]:
                             crime_id = obj_id
                             break
                         else:
@@ -165,7 +153,6 @@ class PeopleBase(cmd.Cmd):
                         except Exception as e:
                             print("Error: ", e)
                         
-
         
 
 if __name__ == '__main__':

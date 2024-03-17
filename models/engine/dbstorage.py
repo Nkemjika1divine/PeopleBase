@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import os
+from datetime import date
 from dotenv import load_dotenv
 from models.basemodel import Base
 from models.dataset import Dataset
@@ -55,15 +56,6 @@ class DBStorage:
                     keyName = ClassName + "." + obj.id
                     result[keyName] = obj
         return result
-
-        """new_dict = {}
-        for clss in classes:
-            if cls is None or cls is classes[clss] or cls is clss:
-                objs = self.__session.query(classes[clss]).all()
-                for obj in objs:
-                    key = "{}.{}".format(obj.__class__.__name__, obj.id)
-                    new_dict[key] = obj
-        return (new_dict)"""
     
     def new(self, obj):
         """add an object to the database"""
@@ -100,3 +92,27 @@ def get_column_value(session=None, table_name=None, row_id=None, column_name=Non
             return getattr(row, column_name)
         else:
             return None
+
+def print_requested_data(session=None, table_name=None, row_id=None, arg=None):
+    if session and table_name and row_id and arg:
+        print("Information associated with requested entry [{}]:".format(arg))
+        print("Name: {} {} {}".format(get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="first_name"),
+                                       get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="middle_name"),
+                                       get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="last_name")))
+        print("Date of Birth: {}".format(get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="date_of_birth")))
+        print("Age: {} years".format((date.today() - get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="date_of_birth")) / 365.25))
+        print("Gender: {}".format(get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="gender")))
+        print("Nationality: {}".format(get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="nationality")))
+        print("Residential Address: {}, {}, {}, {}.".format(get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="address"),
+                                                            get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="city"),
+                                                            get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="state"),
+                                                            get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="country")))
+        print("Phone Number: {}".format(get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="phone_number")))
+        print("Email Address: {}".format(get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="email")))
+        print("Phone Number: {}".format(get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="phone_number")))
+        print("Marital Status: {}".format(get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="marital_status")))
+        print("Occupation: {}".format(get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="occupation")))
+
+def print_requested_crime(session=None, table_name=None, row_id=None, arg=None):
+    if session and table_name and row_id and arg:
+        print

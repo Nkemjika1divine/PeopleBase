@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-def search(line=None):
-    from models import storage
+from models import storage
+from models.engine.dbstorage import classes
 
-    if line:
-        similar_objects = {}
+
+def create():
+    pass
