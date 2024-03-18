@@ -56,9 +56,9 @@ class DBStorage:
         else:
             for cls in classes.values():
                 for obj in self.__session.query(cls).all():
-                    ClassName = obj.__class__.__name__
-                    keyName = ClassName + "." + obj.id
-                    result[keyName] = obj
+                    class_name = obj.__class__.__name__
+                    key = class_name + "." + obj.id
+                    result[key] = obj
         return result
 
 
@@ -100,14 +100,15 @@ class DBStorage:
         """
         count the number of objects in storage
         """
-        all_class = classes.values()
 
         if not cls:
             count = 0
-            for a_class in all_class:
-                count += len(storage.all(a_class).values())
+            all_classes = storage.all()
+            for i in all_classes:
+                count += 1
+            return count
         else:
-            count = len(storage.all(cls).values())
+            count = len(storage.all(cls))
 
         return count
 

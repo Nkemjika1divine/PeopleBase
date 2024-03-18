@@ -15,7 +15,7 @@ def return_status():
 @app_views.route('/stats', methods=['GET'], strict_slashes=False)
 def return_statistics():
     from models import storage
-    classes = [Activity, Crime, Dataset, User]
+    classes = ["Activity", "Crime", "Dataset", "User"]
     class_names = ["activity", "crime", "dataset", "user"]
 
     data = {}

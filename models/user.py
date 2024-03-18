@@ -24,7 +24,7 @@ class User(BaseModel, Base):
         email = Column(String(60), nullable=False, unique=True)
         address = Column(String(500), nullable=False)
         phone_number = Column(String(20), nullable=False, unique=True)
-        password = Column(String(20), nullable=False, unique=True)
+        password = Column(String(20), nullable=False)
         role = Column(String(10), default="user", nullable=False)
     
     def __init__(self, *args, **kwargs):
