@@ -20,4 +20,4 @@ def return_404(error):
 
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port='5000', threaded=True)
+    app.run(host='3.84.237.147', port='5000', threaded=True)
