@@ -17,21 +17,27 @@ class PeopleBase(cmd.Cmd):
     prompt = "\nPeopleBase: "
 
     def emptyline(self):
+        """Handles emptyline commaneds"""
         return False
 
     def do_quit(self, arg):
+        """quits a program"""
         return True
     
     def do_exit(self, arg):
+        """Exits a program"""
         return True
     
     def do_EOF(self, arg):
+        """Handleds EOF"""
         return True
     
     def help_exit(self):
+        """Help for the exit command"""
         print("'exit' exits the program")
     
     def help_quit(self):
+        """Help for the quit command"""
         print("'quit' exits the program")
 
 
@@ -74,6 +80,7 @@ class PeopleBase(cmd.Cmd):
 
     
     def do_create(self, arg=None):
+        """ Creates an object of various classes """
         if arg:
             if arg.lower() == "new data":
                 print("\n*******Please endeavor to follow the instructions.*******\n**If you encounter an error, you will have to start afresh.\n**")

@@ -35,6 +35,7 @@ class BaseModel:
             self.time_updated = datetime.now()
     
     def to_dict(self):
+        """Returns a dictionary representation of the values in the tables"""
         copy = self.__dict__.copy()
         copy['__class__'] = self.__class__.__name__
         if 'time_created' in copy:
@@ -46,9 +47,11 @@ class BaseModel:
         return copy
 
     def __str__(self):
+        """Returns a string representation of the object"""
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
+        """Saves a new object"""
         from models import storage
         self.time_updated = datetime.now()
         storage.new(self)

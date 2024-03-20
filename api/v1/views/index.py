@@ -9,11 +9,13 @@ from models.user import User
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
 def return_status():
+    """Checks status of the API"""
     return jsonify({"status": "ok"})
 
 
 @app_views.route('/stats', methods=['GET'], strict_slashes=False)
 def return_statistics():
+    """Returns count of data in every table in the database"""
     from models import storage
     classes = ["Activity", "Crime", "Dataset", "User"]
     class_names = ["activity", "crime", "dataset", "user"]

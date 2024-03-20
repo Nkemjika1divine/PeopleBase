@@ -92,15 +92,13 @@ class DBStorage:
 
 
     def get_session(self):
+        """Gets the runnung seession"""
         return self.__session
     
 
     def count(self, cls=None):
         from models import storage
-        """
-        count the number of objects in storage
-        """
-
+        """count the number of objects in storage"""
         if not cls:
             count = 0
             all_classes = storage.all()
@@ -111,18 +109,42 @@ class DBStorage:
             count = len(storage.all(cls))
 
         return count
+    
+
+    def get_dataset(self, phone_or_email):
+        """Gets an object in the dataset table"""
+        from models import storage
+        all_cls = storage.all("Dataset")
+        for key, value in all_cls.items():
+            data_id = key.split(".")[1]
+            if get_column_value(session=self.__session, table_name=Dataset, row_id=data_id, column_name="email") == phone_or_email:
+                return value
+            if get_column_value(session=self.__session, table_name=Dataset, row_id=data_id, column_name="phone_number") == phone_or_email:
+                return value
+    
+
+    def get_user(self, username):
+        """gets an object in the user table"""
+        from models import storage
+        all_cls = storage.all("User")
+        for key, value in all_cls.items():
+            data_id = key.split(".")[1]
+            if get_column_value(session=self.__session, table_name=User, row_id=data_id, column_name="username") == username:
+                return value
 
 
 def get_column_value(session=None, table_name=None, row_id=None, column_name=None):
-        if table_name and row_id and column_name:
-            row = session.query(table_name).get(row_id)
-        if row:
-            return getattr(row, column_name)
-        else:
-            return None
+    """Gets the value at a column of a table"""
+    if table_name and row_id and column_name:
+        row = session.query(table_name).get(row_id)
+    if row:
+        return getattr(row, column_name)
+    else:
+        return None
 
 
 def print_requested_data(session=None, table_name=None, row_id=None, arg=None):
+    """Prints a requested data to the console"""
     if session and table_name and row_id and arg:
         print("Information associated with requested entry [{}]:".format(arg))
         print("Name: {} {} {}".format(get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="first_name"),
@@ -142,6 +164,8 @@ def print_requested_data(session=None, table_name=None, row_id=None, arg=None):
         print("Marital Status: {}".format(get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="marital_status")))
         print("Occupation: {}".format(get_column_value(session=session, table_name=table_name, row_id=row_id, column_name="occupation")))
 
+
 def print_requested_crime(session=None, table_name=None, row_id=None, arg=None):
+    """prints a requested crime to the console"""
     if session and table_name and row_id and arg:
         print

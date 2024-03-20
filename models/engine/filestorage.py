@@ -18,6 +18,7 @@ class FileStorage:
     __objects = {}
 
     def all(self, cls=None):
+        """returns all values in the file storage"""
         if cls:
             objects = {}
             for key, value in FileStorage.__objects.items():
@@ -28,6 +29,7 @@ class FileStorage:
             return FileStorage.__objects
     
     def new(self, obj):
+        """saves a new data to the storage"""
         class_name = obj.__class__.__name__
         object_id = obj.id
         obj_key = "{}.{}".format(class_name, object_id)
@@ -42,6 +44,7 @@ class FileStorage:
             json.dump(json_objects, f)
     
     def reload(self):
+        """Reloads the data in the storage"""
         if os.path.isfile(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r') as f:
                 try:
@@ -54,6 +57,7 @@ class FileStorage:
                     pass
     
     def delete(self, obj=None):
+        """Deletes an object from the storage"""
         if obj:
             all_objects = FileStorage.__objects
             obj_key = "{}.{}".format(obj.__class__.__name__, obj.id)
