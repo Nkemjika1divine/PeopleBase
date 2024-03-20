@@ -9,10 +9,11 @@ If you want to know more about that person you're worried about dating or doing 
 ## Getting Started
 
 Follow these instructions to get started.
+Clone this repository and make use of the console (peoplebase.py) to have access to the database
 
 ## Usage
 
-Add usage information here.
+To find anyone, You enter "find <phone number>
 
 ## Contributing
 
