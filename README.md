@@ -13,7 +13,10 @@ Clone this repository and make use of the console (peoplebase.py) to have access
 
 ## Usage
 
-To find anyone, You enter "find <phone number>
+To find anyone, You enter "find $phone_number"
+Or you can enter "find $email"
+
+Replace $phone_numeber and $email with the phone number or email address of the person you're trying to know and you will see all information about that person
 
 ## Contributing
 
@@ -21,4 +24,4 @@ Contributions are welcome! Please follow the guidelines.
 
 ## License
 
-This project is licensed under the [License Name] - see the [LICENSE.md](LICENSE.md) file for details.
+This project is owned by Divine Nkemjika. Any attempt to steal it will result in cases you do not want on your doorsteps.
