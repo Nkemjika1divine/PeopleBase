@@ -12,4 +12,4 @@ storage.save()"""
 storage.new(activity)
 storage.save()"""
 
-print(storage.count("Crime"))
+print(storage.get_crime("08138816960", "02a8aba5-d8c7-4971-ae5d-acba0a3c302c"))

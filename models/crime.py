@@ -17,7 +17,7 @@ class Crime(BaseModel, Base):
         duration_ends = ""
     elif os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "db":
         __tablename__ = "crimes"
-        criminal_id = Column(String(50), ForeignKey("dataset.id"), nullable=False)
+        criminal_id = Column(String(50), ForeignKey("dataset.id", ondelete="CASCADE"), nullable=False)
         crime_committed = Column(String(200), nullable=False)
         punishment = Column(String(200), nullable=False)
         duration_in_months = Column(Integer, nullable=False)

@@ -15,7 +15,7 @@ class Activity(BaseModel, Base):
         date = ""
     elif os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "db":
         __tablename__ = "activities"
-        user_id = Column(String(50), ForeignKey("users.id"), nullable=False)
+        user_id = Column(String(50), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
         information_accessed = Column(String(500), nullable=False)
         date = Column(Date, default=datetime.utcnow, nullable=False)
     

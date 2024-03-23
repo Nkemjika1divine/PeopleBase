@@ -13,6 +13,7 @@ load_dotenv()
 class User(BaseModel, Base):
     if os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "file":
         username = ""
+        gender = ""
         email = ""
         address = ""
         phone_number = ""
@@ -20,7 +21,8 @@ class User(BaseModel, Base):
         role = "user"
     elif os.environ.get("PEOPLEBASE_STORAGE_TYPE") == "db":
         __tablename__ = "users"
-        username = Column(String(50), nullable=False)
+        username = Column(String(50), nullable=False, unique=True)
+        gender = Column(String(10), nullable=False)
         email = Column(String(60), nullable=False, unique=True)
         address = Column(String(500), nullable=False)
         phone_number = Column(String(20), nullable=False, unique=True)
