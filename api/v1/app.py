@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from flask import Flask, make_response, jsonify, request
+from flask import Flask, make_response, jsonify
 from api.v1.views import app_views
 
 
